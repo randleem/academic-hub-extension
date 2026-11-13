@@ -84,18 +84,24 @@ export default function AssignmentDetail() {
                     >
                       <span>
                         <span className="block font-medium">
-                          {submission.studentFirstName +
-                            submission.studentLastName}
+                          {`${submission.studentFirstName} 
+                            ${submission.studentLastName}`}
                         </span>
                       </span>
                       <span className="text-sm text-slate-600">
-                        Due{" "}
+                        {submission.status === "late" ? (
+                          <span className="rounded border border-red-200 bg-red-50 px-3 py-2 mr-4 text-xs font-medium text-red-700">
+                            {submission.status}
+                          </span>
+                        ) : (
+                          <span className="rounded border border-green-200 bg-green-50 px-3 py-2 mr-4 text-xs font-medium text-green-700">
+                            {submission.status}
+                          </span>
+                        )}
+                        Submitted
                         {formatUkDateTime({
-                          value: submission.assignmentDueAt,
+                          value: submission.submittedAt,
                         })}
-                        <span className="block text-sm text-slate-500">
-                          {submission.status}
-                        </span>
                       </span>
                     </Link>
                   </li>
